@@ -451,8 +451,14 @@
     }
 
     .grid {
-      height: auto;
+    //   height: auto;
       padding-bottom: 4rem; 
+    }
+  }
+
+  @media (max-width: 768px) {
+    .grid {
+      height: 300px !important; 
     }
   }
 
@@ -517,9 +523,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 4px 10px;
 
         img {
-          width: 50%;
+          width: 70%;
         }
       }
 
@@ -622,7 +629,7 @@
       height: 40px !important;
 
       img {
-        width: 45% !important;
+        width: 50% !important;
       }
     }
 
@@ -637,6 +644,14 @@
     .tag {
       left: -0.6rem;
       height: 45px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .icon {
+        width: 40px !important;
+        height: 40px !important;
+        padding: 4px 6px !important;
     }
   }
 }
