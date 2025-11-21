@@ -653,6 +653,18 @@
         height: 40px !important;
         padding: 4px 6px !important;
     }
+
+    &::after {
+      width: 200px;
+      height: 200px;
+      top: -6rem;
+      right: -6rem;
+    }
+    &::before {
+      width: 200px;
+      height: 200px;
+      bottom: -6rem;
+      left: -6rem;
   }
 }
 
