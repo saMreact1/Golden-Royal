@@ -1,0 +1,75 @@
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  background: #162A56;
+  gap: 1rem;
+
+  img {
+    width: 180px;
+  }
+
+  .copy {
+    text-align: right;
+
+    p,
+    span {
+      color: #ffffff;
+      font-weight: 400;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    span {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  }
+}
+
+/* 🔥 TABLET */
+@media (max-width: 900px) {
+  footer {
+    padding: 1.5rem;
+
+    img {
+      width: 150px;
+    }
+
+    .copy p {
+      font-size: 15px;
+    }
+
+    .copy span {
+      font-size: 13px;
+    }
+  }
+}
+
+/* 📱 MOBILE */
+@media (max-width: 600px) {
+  footer {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+
+    img {
+      width: 140px;
+    }
+
+    .copy {
+      text-align: center;
+
+      p {
+        font-size: 14px;
+      }
+
+      span {
+        font-size: 13px;
+      }
+    }
+  }
+}

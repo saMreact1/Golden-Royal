@@ -1,0 +1,33 @@
+<header>
+  <div class="logo">
+    <img src="../../../assets/images/logo.png" alt="" />
+  </div>
+
+  <!-- Desktop Nav -->
+  <nav class="nav-desktop">
+    <ul>
+      <li>About</li>
+      <li>Practice Areas</li>
+      <li>Contact</li>
+    </ul>
+  </nav>
+
+  <button class="cta">Book Consultation</button>
+
+  <!-- Hamburger (Angular click) -->
+  <div class="hamburger" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Mobile Nav -->
+  <nav class="nav-mobile" [class.active]="mobileMenuOpen">
+    <ul>
+      <li>About</li>
+      <li>Practice Areas</li>
+      <li>Contact</li>
+      <li class="mobile-cta">Book Consultation</li>
+    </ul>
+  </nav>
+</header>

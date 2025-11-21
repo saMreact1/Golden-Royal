@@ -1,0 +1,208 @@
+<app-header></app-header>
+
+<section class="hero">
+    <div class="title">
+        <h1>
+            GoldenRoyal Legal <span>Practitioners</span> Excellence in <span>Law</span>, Centered on you
+        </h1>
+        <div class="hero-text" aria-live="polite">
+            <div class="hero-text-piece" id="hero-piece-1">
+                Welcome to GoldenRoyal Legal Practitioners. <br>
+                You are at the centre of our existence: without you, we do not exist. We admit that the growth of our establishment depends largely on serving you excellently in the most amazing ways. Trust us, we want to grow with you and your business; and providing cutting edge legal services to you and your business is our only mechanism of doing this.
+            </div>
+
+            <div class="hero-text-piece" id="hero-piece-2">
+                We are aware of your uniqueness, so much that we can tell that your personal and business legal needs are not the same with those of others. Our legal services and profound solutions are tailored towards understanding your needs and identifying impeccable solutions that suit you.
+            </div>
+
+            <div class="hero-text-piece" id="hero-piece-3">
+                Feel free and ride with us. You don't need to fasten your belt as our pilot lawyers understand the legal terrain to give you the most outstanding legal journey. Grab a glass and let us toast to a long time of excellent legal services.
+            </div>
+        </div>
+    </div>
+
+    <div class="cta">
+        <button class="contact btn">Contact us</button>
+        <button class="book btn">Book Consultation</button>
+    </div>
+
+    <div class="oval">
+        <img src="../../../assets/images/hero.png" alt="" class="hero-img">
+    </div>
+</section>
+
+<section class="about">
+    <h6>Who We Are</h6>
+
+    <div class="title">
+        <h3>
+            About Golden Royal Legal Practitioners
+        </h3>
+        <p>
+            We are a firm of barristers and solicitors that are passionately devoted to meeting your personal and business legal needs. We are particularly fervid about applying international best practices in solving your legal problems and challenges. Our Lawyers are not just committed to proffering tested and trusted solutions to legal problems, we are focused on providing proven solutions that suit individual legal entities without attracting additional liabilities. <br><br>
+            Our litigation attorneys understand the Nigerian judicial system and have devised strategies that are not only aimed at navigating the system successfully, but that also help you get to the end of your matters without much delay. While our knowledge of strategies that produce the best results at both trial and appellate courts is top-notch, we understand that our clients' time is precious, necessitating the adoption of an approach that sets the court as a last resort. <br><br>
+            Our corporate law attorneys are versed in the laws that regulate business activities in Nigeria. They have wealth of experience in diverse business areas such as taxation, company secretarial, contracts, real estate law, intellectual property law, entertainment law, sports law and immigration. We believe that our depth of knowledge will help your business successfully navigate the Nigerian business environment without stress.  
+        </p>
+    </div>
+
+    <div class="about-grid">
+        <div class="grid-1">
+            <img src="../../../assets/images/about-img.png" alt="">
+        </div>
+
+        <div class="grid-2">
+            <div class="mission">
+                <div class="header">
+                    <span class="svg">
+                        <img src="../../../assets/images/mission-img.png" alt="">
+                    </span>
+
+                    <p>Our Mission</p>
+                </div>
+
+                <p>
+                    To solve our clients'legal problems within the shortest time through the application of our no-one-approach-fits-all strategy without compromising on global best practices and industry best standard.
+                </p>
+            </div>
+
+            <div class="vision">
+                <div class="header">
+                    <span class="svg">
+                        <img src="../../../assets/images/vision-img.png" alt="">
+                    </span>
+
+                    <p>Our Vision</p>
+                </div>
+
+                <p>
+                    To be a household name in the business of law in Nigeria primarily and expand beyond the national shores within the shortest time.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="expertise">
+    <h6>Our Expertise</h6>
+
+    <div class="title">
+        <h3>Practice Area</h3>
+
+        <p>
+            We offer comprehensive legal services across multiple practice areas, combining specialized expertise with a client-centered approach to deliver exceptional results.
+        </p>
+    </div>
+
+    <div class="expertise-grid">
+        <div class="grid" *ngFor="let exp of expertise">
+            <div class="icon">
+                <img [src]="exp.icon" alt="">
+            </div>
+
+            <p>{{ exp.title }}</p>
+
+            <span>
+                {{ exp.description }}
+            </span>
+
+            <button class="read-more" (click)="openDialog(exp)">
+                Read More
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="partner">
+    <h6>Why Choose Us</h6>
+
+    <div class="title">
+        <h3>Your Trusted Legal Partner</h3>
+
+        <p>
+            When you choose GoldenRoyal Legal Practitioners, you're choosing a partner committed to excellence, integrity, and your success.
+        </p>
+    </div>
+
+    <div class="partner-grid">
+        <div class="grid" *ngFor="let p of partner">
+            <div class="icon">
+                <img [src]="p.icon" alt="">
+            </div>
+
+            <div class="text">
+                <p>{{ p.title }}</p>
+
+                <span>
+                    {{ p.description }}
+                </span>
+            </div>
+
+            <!-- <div class="tag"></div> -->
+        </div>
+    </div>
+</section>
+
+<section class="contact">
+    <h6>Get In Touch</h6>
+
+    <div class="title">
+        <h3>Contact Us</h3>
+
+        <p>
+            Ready to discuss your legal needs? Reach out to us today and let's start building your path to success together.
+        </p>
+    </div>
+
+    <div class="grid">
+        <div class="details">
+            <h3>Our Offices</h3>
+
+            <div class="offices" *ngFor="let off of offices">
+                <span class="icon">
+                    <img [src]="off.icon" alt="">
+                </span>
+
+                <div class="txt">
+                    <p>{{ off.state }}</p>
+                    <span>{{ off.address }}</span>
+                </div>
+            </div>
+            <hr>
+            <div class="contact" *ngFor="let c of contact">
+                <span class="icon">
+                    <img [src]="c.icon" alt="">
+                </span>
+
+                <div class="txt">
+                    <p>{{ c.mode }}</p>
+                    <span>{{ c.address }}</span>
+                </div>
+            </div>
+        </div>
+
+        <mat-card class="form">
+            <mat-card-title>Send us a message</mat-card-title>
+
+            <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input type="text" matInput formControlName="name" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Email address</mat-label>
+                    <input type="text" matInput formControlName="email" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput formControlName="message" placeholder="Type your message here..." required></textarea>
+                </mat-form-field>
+
+                <button [disabled]="messageForm.invalid">Speak with a Lawyer</button>
+            </form>
+        </mat-card>
+    </div>
+</section>
+
+<app-footer></app-footer>
