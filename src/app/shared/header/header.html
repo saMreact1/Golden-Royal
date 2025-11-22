@@ -6,13 +6,13 @@
   <!-- Desktop Nav -->
   <nav class="nav-desktop">
     <ul>
-      <li>About</li>
-      <li>Practice Areas</li>
-      <li>Contact</li>
+      <li [class.active]="activeSection === 'about'"><a href="#about">About</a></li>
+      <li [class.active]="activeSection === 'expertise'"><a href="#expertise">Practice Areas</a></li>
+      <li [class.active]="activeSection === 'contact'"><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <button class="cta">Book Consultation</button>
+  <button class="cta" mat-button (click)="scrollTo('contact')">Book Consultation</button>
 
   <!-- Hamburger (Angular click) -->
   <div class="hamburger" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
@@ -24,10 +24,10 @@
   <!-- Mobile Nav -->
   <nav class="nav-mobile" [class.active]="mobileMenuOpen">
     <ul>
-      <li>About</li>
-      <li>Practice Areas</li>
-      <li>Contact</li>
-      <li class="mobile-cta">Book Consultation</li>
+      <li [class.active]="activeSection === 'about'" (click)="scrollTo('about')"><a href="#about">About</a></li>
+      <li [class.active]="activeSection === 'expertise'" (click)="scrollTo('expertise')"><a href="#expertise">Practice Areas</a></li>
+      <li [class.active]="activeSection === 'contact'" (click)="scrollTo('contact')"><a href="#contact">Contact</a></li>
+      <button class="mobile-cta" mat-button (click)="scrollTo('contact')">Book Consultation</button>
     </ul>
   </nav>
 </header>
