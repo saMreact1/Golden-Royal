@@ -199,7 +199,7 @@
                     <textarea matInput formControlName="message" placeholder="Type your message here..." required></textarea>
                 </mat-form-field>
 
-                <button [disabled]="messageForm.invalid">Speak with a Lawyer</button>
+                <button [disabled]="messageForm.invalid || sending" mat-flat-button>Speak with a Lawyer</button>
             </form>
         </mat-card>
     </div>

@@ -271,6 +271,13 @@
         border-radius: 10px;
         position: relative;
         overflow: hidden;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, .05);
+        transition: all .4s ease;
+
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 24px rgba(0, 0, 0, .1);
+        }
 
         .header {
           display: flex;
@@ -384,6 +391,13 @@
       text-align: center;
       position: relative;
       margin-bottom: 2rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, .05);
+      transition: all .4s ease;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, .1);
+      }
 
       .icon {
         width: 60px;
@@ -514,6 +528,13 @@
       gap: 1rem;
       text-align: left;
       position: relative;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, .05);
+      transition: all .4s ease;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, .1);
+      }
 
       .icon {
         width: 120px;
@@ -825,12 +846,12 @@
                 button {
                     width: max-content;
                     margin: 3rem auto 0;
-                    background-color: #0C1E46;
-                    color: #ffffff;
+                    // background-color: #0C1E46;
+                    // color: #ffffff;
                     font-size: 20px;
                     font-weight: 600;
                     padding: 10px;
-                    border: none;
+                    // border: none;
                     border-radius: 10px;
                 }
             }

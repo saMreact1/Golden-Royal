@@ -11,6 +11,15 @@ html {
   ));
 
   scroll-behavior: smooth;
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+  ::-webkit-scrollbar-track {
+    display: none;
+  }
+  ::-webkit-scrollbar-thumb {
+    display: none;
+  }
 }
 
 body {

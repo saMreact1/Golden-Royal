@@ -1,9 +1,12 @@
-import { Component, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../features/dialog.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { isPlatformBrowser } from '@angular/common';
+import { ContactService } from '../../core/contact.service';
+import { Expertise } from '../../core/models/expertise.model';
+
 
 @Component({
   selector: 'app-landing',
@@ -11,12 +14,13 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
 })
-export class Landing implements AfterViewInit, OnDestroy {
+export class Landing implements AfterViewInit, OnDestroy, OnInit {
   private pieces: HTMLElement[] = [];
   private intervalId: any;
   private current = 0;
 
-  messageForm: FormGroup;
+  messageForm!: FormGroup;
+  sending: boolean = false;
 
   heroTexts = [
     `Welcome to GoldenRoyal Legal Practitioners. You are at the centre of our existence.`,
@@ -124,12 +128,15 @@ export class Landing implements AfterViewInit, OnDestroy {
     private dialog: MatDialog,
     private fb: FormBuilder,
     private snack: MatSnackBar,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private contactService: ContactService
+  ) {}
+
+  ngOnInit(): void {
     this.messageForm = this.fb.group({
-      name: [''],
-      email: [''],
-      message: ['']
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
+      message: ['', [Validators.required, Validators.maxLength(2000)]]
     });
   }
 
@@ -170,14 +177,34 @@ export class Landing implements AfterViewInit, OnDestroy {
     }
   }
 
-  openDialog(text: any) {
+  openDialog(text: Expertise) {
     this.dialog.open(DialogComponent, {
       data: text,
-      width: '500px'
+      width: '500px',
+      maxWidth: '80vw',
+      maxHeight: '80vh'
     });
   }
 
   onSubmit () {
+    if(this.messageForm.invalid) return;
+    this.sending = true;
 
+    this.contactService.sendContact(this.messageForm.value).subscribe({
+      next: () => {
+        this.sending = false;
+        this.snack.open('Message sent successfully!', 'Close', {
+          duration: 3000
+        });
+        this.messageForm.reset();
+      },
+      error: (err) => {
+        this.sending = false;
+        this.snack.open('Failed to send message. Please try again.', 'Close', {
+          duration: 3000
+        });
+        console.error('Send error', err);
+      }
+    })
   }
 }
