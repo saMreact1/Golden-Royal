@@ -20,7 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
       <h1 mat-dialog-title style="font-weight: 600;">{{ data.title }}</h1>
 
       <div mat-dialog-content>
-        <p>{{ data.description }}</p>
+        <p [innerHTML]="data.description"></p>
       </div>
 
       <div mat-dialog-actions style="display: flex; justify-content: right; margin-top: 1.5rem;">
@@ -30,7 +30,15 @@ import { MatButtonModule } from '@angular/material/button';
     </div>
   `,
   styles: [
-    `@media (max-width: 600px) {
+    `
+    .container {
+      background: #f6f6f7;
+
+      p {
+        font-size: 1rem;
+      }
+    }
+    @media (max-width: 600px) {
       .container {
         padding: 1rem .5rem !important;
       }

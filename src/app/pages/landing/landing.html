@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 
 <section class="hero" id="hero">
     <div class="title">
@@ -22,8 +22,8 @@
     </div>
 
     <div class="cta">
-        <button class="contact btn">Contact us</button>
-        <button class="book btn">Book Consultation</button>
+        <button class="contact btn" (click)="scrollTo('contact')">Contact us</button>
+        <button class="book btn" (click)="scrollTo('book')">Book Consultation</button>
     </div>
 
     <div class="oval">
@@ -180,7 +180,7 @@
             </div>
         </div>
 
-        <mat-card class="form">
+        <mat-card class="form" id="book">
             <mat-card-title>Send us a message</mat-card-title>
 
             <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
@@ -205,4 +205,4 @@
     </div>
 </section>
 
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->

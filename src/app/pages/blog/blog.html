@@ -1,0 +1,20 @@
+<div class="container" *ngIf="selectedBlog">
+    <div class="hero">
+        <img [src]="selectedBlog.featuredImage" alt="">
+    </div>
+
+    <div class="content">
+        <h1>{{selectedBlog.title}}</h1>
+        <span>By {{selectedBlog.author}} || {{selectedBlog.createdAt | date: 'MMMM d, y'}}</span>
+        <p>{{selectedBlog.content}}</p>
+    </div>
+
+    <div class="carousel">
+        <div class="carousel-item" *ngFor="let blog of blogs" (click)="selectBlog(blog)">
+            <img [src]="blog.featuredImage" alt="blog.title" />
+            <h3>{{ blog.title }}</h3>
+            <p>{{ blog.content }}</p>
+            <button>Read More</button>
+        </div>
+    </div>
+</div>

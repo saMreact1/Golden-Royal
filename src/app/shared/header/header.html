@@ -6,13 +6,14 @@
   <!-- Desktop Nav -->
   <nav class="nav-desktop">
     <ul>
-      <li [class.active]="activeSection === 'about'"><a href="#about">About</a></li>
-      <li [class.active]="activeSection === 'expertise'"><a href="#expertise">Practice Areas</a></li>
-      <li [class.active]="activeSection === 'contact'"><a href="#contact">Contact</a></li>
+      <li [class.active]="activeSection === 'about'"><a (click)="navigateToSection('about')">About</a></li>
+      <li [class.active]="activeSection === 'expertise'"><a (click)="navigateToSection('expertise')">Practice Areas</a></li>
+      <li [class.active]="activeSection === 'blog'"><a routerLink="/blog">Blog</a></li>
+      <li [class.active]="activeSection === 'contact'"><a (click)="navigateToSection('contact')">Contact</a></li>
     </ul>
   </nav>
 
-  <button class="cta" mat-button (click)="scrollTo('contact')">Book Consultation</button>
+  <button class="cta" mat-button (click)="navigateToSection('book')">Book Consultation</button>
 
   <!-- Hamburger (Angular click) -->
   <div class="hamburger" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
@@ -24,10 +25,11 @@
   <!-- Mobile Nav -->
   <nav class="nav-mobile" [class.active]="mobileMenuOpen">
     <ul>
-      <li [class.active]="activeSection === 'about'" (click)="scrollTo('about')"><a href="#about">About</a></li>
-      <li [class.active]="activeSection === 'expertise'" (click)="scrollTo('expertise')"><a href="#expertise">Practice Areas</a></li>
-      <li [class.active]="activeSection === 'contact'" (click)="scrollTo('contact')"><a href="#contact">Contact</a></li>
-      <button class="mobile-cta" mat-button (click)="scrollTo('contact')">Book Consultation</button>
+      <li [class.active]="activeSection === 'about'" (click)="navigateToSection('about')"><a href="#about">About</a></li>
+      <li [class.active]="activeSection === 'expertise'" (click)="navigateToSection('expertise')"><a href="#expertise">Practice Areas</a></li>
+      <li [class.active]="activeSection === 'contact'" (click)="navigateToSection('contact')"><a href="#contact">Contact</a></li>
+      <li [class.active]="activeSection === 'blog'"><a routerLink="/blog" (click)="mobileMenuOpen = false">Blog</a></li>
+      <button class="mobile-cta" mat-button (click)="navigateToSection('contact')">Book Consultation</button>
     </ul>
   </nav>
 </header>

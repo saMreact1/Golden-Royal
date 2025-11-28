@@ -16,13 +16,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Blog } from './pages/blog/blog';
 
 @NgModule({
   declarations: [
     App,
     Landing,
     Header,
-    Footer
+    Footer,
+    Blog
   ],
   imports: [
     BrowserModule,
