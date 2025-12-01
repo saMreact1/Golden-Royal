@@ -8,14 +8,18 @@
         <div class="hero-text" aria-live="polite">
             <div class="hero-text-piece" id="hero-piece-1">
                 Welcome to GoldenRoyal Legal Practitioners. <br>
-                You are at the centre of our existence: without you, we do not exist. We admit that the growth of our establishment depends largely on serving you excellently in the most amazing ways. Trust us, we want to grow with you and your business; and providing cutting edge legal services to you and your business is our only mechanism of doing this.
+                You are at the centre of our existence: without you, we do not exist. We admit that the growth of our establishment depends largely on serving you excellently in the most amazing ways.
             </div>
 
             <div class="hero-text-piece" id="hero-piece-2">
-                We are aware of your uniqueness, so much that we can tell that your personal and business legal needs are not the same with those of others. Our legal services and profound solutions are tailored towards understanding your needs and identifying impeccable solutions that suit you.
+                Trust us, we want to grow with you and your business; and providing cutting edge legal services to you and your business is our only mechanism of doing this.
             </div>
 
             <div class="hero-text-piece" id="hero-piece-3">
+                We are aware of your uniqueness, so much that we can tell that your personal and business legal needs are not the same with those of others. Our legal services and profound solutions are tailored towards understanding your needs and identifying impeccable solutions that suit you.
+            </div>
+
+            <div class="hero-text-piece" id="hero-piece-4">
                 Feel free and ride with us. You don't need to fasten your belt as our pilot lawyers understand the legal terrain to give you the most outstanding legal journey. Grab a glass and let us toast to a long time of excellent legal services.
             </div>
         </div>
@@ -125,8 +129,10 @@
 
     <div class="partner-grid">
         <div class="grid" *ngFor="let p of partner">
-            <div class="icon">
-                <img [src]="p.icon" alt="">
+            <div>
+                <span class="icon">
+                    <img [src]="p.icon" alt="">
+                </span>
             </div>
 
             <div class="text">
@@ -199,7 +205,7 @@
                     <textarea matInput formControlName="message" placeholder="Type your message here..." required></textarea>
                 </mat-form-field>
 
-                <button [disabled]="messageForm.invalid || sending" mat-flat-button>Speak with a Lawyer</button>
+                <button [disabled]="messageForm.invalid || sending" mat-flat-button color="danger">Speak with a Lawyer</button>
             </form>
         </mat-card>
     </div>
