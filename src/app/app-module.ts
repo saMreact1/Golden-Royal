@@ -17,6 +17,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Blog } from './pages/blog/blog';
+import { Admin } from './pages/admin/admin';
+import { MatIconModule } from '@angular/material/icon';
+import { CreateBlog } from './pages/admin/components/create-blog/create-blog';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { Blog } from './pages/blog/blog';
     Landing,
     Header,
     Footer,
-    Blog
+    Blog,
+    Admin,
+    CreateBlog
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import { Blog } from './pages/blog/blog';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatIconModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

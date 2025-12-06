@@ -13,7 +13,7 @@ export class Blog implements OnInit {
   totalPages = 0
 
   selectedBlog: any | null = null;
-date: any;
+  date: any;
 
   constructor(
     private blogService: BlogService

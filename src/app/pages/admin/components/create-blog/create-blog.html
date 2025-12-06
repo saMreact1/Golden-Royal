@@ -1,0 +1,98 @@
+<div class="container">
+    <header>
+        <div class="back" routerLink="/admin">
+            <mat-icon>west</mat-icon>
+            Back to posts
+        </div>
+
+        <div class="cta">
+            <button mat-button>Save to draft</button>
+            <button mat-button>Publish</button>
+        </div>
+    </header>
+
+    <form [formGroup]="blogForm">
+        <div class="grid-left">
+            <div class="title">
+                <label for="title">Blog Title</label>
+                <input mat-input type="text" name="title" formControlName="title" placeholder="Enter blog post title">
+            </div>
+            <div class="summary">
+                <label for="summary">Short Description</label>
+                <textarea name="summary" formControlName="summary" placeholder="Enter a brief description"></textarea>
+            </div>
+            <div class="content">
+                <label for="content">Content</label>
+                <textarea name="content" formControlName="content" id="content"></textarea>
+            </div>
+        </div>
+
+        <div class="grid-right">
+            <div class="img">
+                <h4>Featured Image</h4>
+
+                <div class="upload" 
+                    (click)="fileInput.click()" 
+                    (dragover)="onDragOver($event)" 
+                    (dragleave)="onDragLeave($event)"
+                    (drop)="onDrop($event)"
+                    [class.drag-over]="isDragOver"
+                >
+                    <ng-container *ngIf="!preview">
+                        <mat-icon>cloud_upload</mat-icon>
+                        <div>
+                            <span>Click to Upload</span> <br>
+                            <span>or drag and drop</span>
+                        </div>
+                    </ng-container>
+
+                    <ng-container>
+                        <img [src]="preview" class="preview-img" alt="">
+                    </ng-container>
+
+                    <input 
+                        type="file" 
+                        #fileInput 
+                        accept="image/*" 
+                        hidden 
+                        (change)="onFileSelected($event)"
+                    >
+                </div>
+            </div>
+
+            <div class="settings">
+                <h4>Post Settings</h4>
+
+                <div class="author">
+                    <label for="author">Author</label>
+                    <input mat-input type="text" name="author" formControlName="author" placeholder="Blog Author">
+                </div>
+                <div>
+                    <label for="category">Category</label>
+                    <select name="category" formControlName="category" id="category">
+                        <option [ngValue]="null" disabled>Select Category</option>
+                        <option value="CORPORATE_LAW">CORPORATE_LAW</option>
+                        <option value="CRIMINAL_LAW">CRIMINAL_LAW</option>
+                        <option value="FAMILY_LAW">FAMILY_LAW</option>
+                        <option value="REAL_ESTATE_LAW">REAL_ESTATE_LAW</option>
+                        <option value="EMPLOYMENT_LAW">EMPLOYMENT_LAW</option>
+                        <option value="PERSONAL_INJURY">PERSONAL_INJURY</option>
+                        <option value="INTELLECTUAL_PROPERTY">INTELLECTUAL_PROPERTY</option>
+                        <option value="IMMIGRATION_LAW">IMMIGRATION_LAW</option>
+                        <option value="TAX_LAW">TAX_LAW</option>
+                        <option value="ESTATE_PLANNING">ESTATE_PLANNING</option>
+                        <option value="CONSTITUTIONAL_LAW">CONSTITUTIONAL_LAW</option>
+                        <option value="ENVIRONMENTAL_LAW">ENVIRONMENTAL_LAW</option>
+                        <option value="BANKRUPTCY_LAW">BANKRUPTCY_LAW</option>
+                        <option value="LEGAL_NEWS">LEGAL_NEWS</option>
+                        <option value="OTHER">OTHER</option>
+                    </select>
+                </div>
+                <div class="date">
+                    <label for="date">Publish Date</label>
+                    <input mat-input type="text" name="date" [value]="date | date:'MMMM d, y'" disabled>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

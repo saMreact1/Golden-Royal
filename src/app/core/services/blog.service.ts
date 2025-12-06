@@ -13,4 +13,8 @@ export class BlogService {
     getAllBlogs(): Observable<any> {
         return this.http.get<any>(this.apiUrl);
     }
-}
+
+    createBlog() {
+        
+    }
+ }
