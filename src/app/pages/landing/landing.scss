@@ -30,7 +30,7 @@
       margin-top: 1rem;
       padding: 0 1rem;
       position: relative;
-      min-height: 6rem;
+      min-height: 4rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -125,7 +125,7 @@
     }
 
     .title .hero-text {
-        min-height: 8rem;
+        min-height: 5rem;
     }
 
     .oval {
@@ -149,7 +149,7 @@
     }
 
     .title .hero-text {
-        min-height: 10rem;
+        min-height: 8rem;
     }
 
     .oval {
@@ -376,6 +376,13 @@
   }
 }
 
+@media (max-width: 480px) {
+  .about, .expertise, .partner {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+}
+
 
 .expertise {
   background-color: #EFF3FF;
@@ -594,7 +601,6 @@
     top: -10rem;
     right: -10rem;
     border-radius: 50%;
-    // z-index: -1;
   }
 
   &::before {
@@ -685,8 +691,8 @@
     }
 
     &::after {
-      width: 200px;
-      height: 200px;
+      width: 170px;
+      height: 170px;
       top: -6rem;
       right: -6rem;
     }
