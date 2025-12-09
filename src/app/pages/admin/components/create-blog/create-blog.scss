@@ -8,6 +8,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 999;
 
         .back {
             display: flex;
@@ -64,7 +68,8 @@
 
                 input, textarea {
                     border: none;
-                    // width: 100%;
+                    font-size: 16px;
+                    font-family: Inter;
                     height: 55px;
                     background-color: #F5F5F5;
                     border-radius: 12px;
@@ -271,6 +276,10 @@
 @media (max-width: 480px) {
   .container form {
     padding: 1rem .8rem !important;
+  }
+
+  .back span {
+    display: none;
   }
 
   .upload {

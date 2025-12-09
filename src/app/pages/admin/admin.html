@@ -16,18 +16,18 @@
                         <h4>{{ blog.title }}</h4>
                         <p>{{ blog.summary }}</p>
                     </div>
-                    <span>Published</span>
+                    <span class="status" [ngClass]="blog.status.toLowerCase()">{{ blog.status }}</span>
                 </div>
 
                 <div class="actions">
                     <span>Created: {{ blog.createdAt | date: 'MMMM d, y' }}</span>
 
                     <div class="cta">
-                        <button mat-button>
+                        <button mat-button (click)="openEditDialog(blog)">
                             <mat-icon>editOutlined</mat-icon>
                             Edit
                         </button>
-                        <button mat-button>
+                        <button mat-button (click)="deleteBlog(blog.id)" [disabled]="loading">
                             <mat-icon>delete</mat-icon>
                             Delete
                         </button>

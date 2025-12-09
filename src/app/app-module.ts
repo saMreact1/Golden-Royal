@@ -15,11 +15,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Blog } from './pages/blog/blog';
 import { Admin } from './pages/admin/admin';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateBlog } from './pages/admin/components/create-blog/create-blog';
+import { Loader } from './shared/loader/loader';
+import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
+import { ConfirmDialog } from './shared/confirm-dialog/confirm-dialog';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { CreateBlog } from './pages/admin/components/create-blog/create-blog';
     Footer,
     Blog,
     Admin,
-    CreateBlog
+    CreateBlog,
+    ConfirmDialog,
+    // Loader
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,12 @@ import { CreateBlog } from './pages/admin/components/create-blog/create-blog';
     MatIconModule
   ],
   providers: [
-    provideBrowserGlobalErrorListeners()
+    provideBrowserGlobalErrorListeners(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [App]
 })

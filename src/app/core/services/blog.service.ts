@@ -14,7 +14,15 @@ export class BlogService {
         return this.http.get<any>(this.apiUrl);
     }
 
-    createBlog() {
-        
+    createBlog(payload: FormData): Observable<any> {
+        return this.http.post(`${this.apiUrl}`, payload);
     }
- }
+
+    updateBlog(id: string, data: FormData) {
+        return this.http.put(`${this.apiUrl}/${id}`, data)
+    }
+
+    deleteBlog(id: number) {
+        return this.http.delete(`${this.apiUrl}/${id}`);
+    }
+}

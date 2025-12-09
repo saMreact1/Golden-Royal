@@ -18,7 +18,7 @@
         gap: 1rem;
 
         h3 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 700;
         }
 
@@ -26,6 +26,7 @@
             background-color: #0C1E46;
             font-weight: 600;
             color: #fff;
+            font-size: 18px;
         }
     }
 
@@ -88,13 +89,21 @@
                     }
 
                     span {
-                        background-color: #D3FFF0;
-                        color: #006042;
                         padding: 8px;
                         height: max-content;
                         border-radius: 6px;
                         font-size: 14px;
                         white-space: nowrap;
+
+                        &.published {
+                            background: #D3FFF0;
+                            color: #006042;
+                        }
+
+                        &.draft {
+                            background: #FFF4CC;
+                            color: #8A6D00;
+                        }
                     }
 
                     div {
