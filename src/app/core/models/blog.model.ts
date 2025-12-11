@@ -1,4 +1,5 @@
 export interface Blogs {
+  id: number;
   title: string;
   slug: string;
   summary: string;
@@ -7,4 +8,7 @@ export interface Blogs {
   featuredImage: string;
   category: string;
   status: string;
+  page: number;
+  size: number;
+  search?: string;
 }

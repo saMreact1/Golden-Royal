@@ -23,6 +23,7 @@ import { CreateBlog } from './pages/admin/components/create-blog/create-blog';
 import { Loader } from './shared/loader/loader';
 import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
 import { ConfirmDialog } from './shared/confirm-dialog/confirm-dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ConfirmDialog } from './shared/confirm-dialog/confirm-dialog';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

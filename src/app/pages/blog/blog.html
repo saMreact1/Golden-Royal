@@ -12,7 +12,16 @@
     <div class="carousel">
         <div class="carousel-item" *ngFor="let blog of blogs" (click)="selectBlog(blog)">
             <img [src]="blog.featuredImage" alt="blog.title" />
-            <h3>{{ blog.title }}</h3>
+            <div class="tit">
+                <h3>
+                    {{ blog.title }}
+                </h3>
+                <span>
+                    <mat-icon>trending_up</mat-icon>
+                    views
+                    {{ blog.viewCount }}
+                </span>
+            </div>
             <p>{{ blog.content }}</p>
             <button>Read More</button>
         </div>

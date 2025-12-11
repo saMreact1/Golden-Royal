@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateBlog } from './components/create-blog/create-blog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialog } from '../../shared/confirm-dialog/confirm-dialog';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -15,6 +16,19 @@ import { ConfirmDialog } from '../../shared/confirm-dialog/confirm-dialog';
 export class Admin implements OnInit {
   blogs: any[] = [];
   loading: boolean = true;
+  page = 0;
+  size = 10;
+  totalPages = 0;
+
+  filters = {
+    status: '',
+    category: '',
+    search: ''
+  };
+
+  selectedStatus: string | null = null;
+  selectedCategory: string | null = null;
+  searchText: string = '';
 
   constructor(
     private blog: BlogService,
@@ -27,9 +41,23 @@ export class Admin implements OnInit {
   }
 
   loadBlogs() {
-    this.blog.getAllBlogs().subscribe(res => {
+    const { status, category, search } = this.filters;
+
+    let request$: Observable<any>;
+
+    if (search) {
+      request$ = this.blog.search(search, this.page, this.size);
+    } else if (status) {
+      request$ = this.blog.filterByStatus(status, this.page, this.size);
+    } else if (category) {
+      request$ = this.blog.filterByCategory(category, this.page, this.size);
+    } else {
+      request$ = this.blog.getAllBlogs(this.page, this.size);
+    }
+
+    request$.subscribe(res => {
       this.blogs = res.content;
-      this.loading = false;
+      this.totalPages = res.totalPages;
     });
   }
 
@@ -83,5 +111,32 @@ export class Admin implements OnInit {
         this.loadBlogs();
       }
     });
+  }
+
+  debouncedSearch = this.debounce(() => {
+    this.page = 0;
+    this.loadBlogs();
+  }, 500);
+
+  debounce(func: Function, delay: number) {
+    let timer: any;
+    return (...args: any[]) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
+
+  nextPage() {
+    if (this.page < this.totalPages - 1) {
+      this.page++;
+      this.loadBlogs();
+    }
+  }
+
+  prevPage() {
+    if (this.page > 0) {
+      this.page--;
+      this.loadBlogs();
+    }
   }
 }
