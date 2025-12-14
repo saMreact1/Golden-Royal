@@ -26,6 +26,9 @@ import { ConfirmDialog } from './shared/confirm-dialog/confirm-dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { Login } from './pages/auth/login/login';
 import { Layout } from './pages/layout/layout';
+import { ManageBlog } from './pages/admin/manage-blog/manage-blog';
+import { MatMenuModule } from '@angular/material/menu';
+import { Invite } from './pages/admin/invite/invite';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,8 @@ import { Layout } from './pages/layout/layout';
     ConfirmDialog,
     Login,
     Layout,
+    ManageBlog,
+    Invite,
     // Loader
   ],
   imports: [
@@ -55,7 +60,8 @@ import { Layout } from './pages/layout/layout';
     MatSnackBarModule,
     MatIconModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

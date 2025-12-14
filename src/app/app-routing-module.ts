@@ -5,6 +5,8 @@ import { Blog } from './pages/blog/blog';
 import { Admin } from './pages/admin/admin';
 import { Login } from './pages/auth/login/login';
 import { Layout } from './pages/layout/layout';
+import { ManageBlog } from './pages/admin/manage-blog/manage-blog';
+import { Invite } from './pages/admin/invite/invite';
 
 const routes: Routes = [
   { path: '',
@@ -12,12 +14,14 @@ const routes: Routes = [
     children: [
       { path: '', component: Landing },
       { path: 'blog', component: Blog },
-      { path: 'admin', component: Admin }
     ]
    },
-  // { path: 'blog', component: Blog },
-  // { path: 'admin', component: Admin },
-  // { path: '**', redirectTo: '' , pathMatch: 'full' },
+  { path: 'admin', component: Admin, 
+    children: [
+      { path: '', component: ManageBlog },
+      { path: 'invite', component: Invite },
+    ]
+  },
   { path: 'login', component: Login}
 ];
 

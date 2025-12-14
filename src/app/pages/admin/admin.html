@@ -1,109 +1,50 @@
-<div class="container">
-    <div class="title">
-        <h3>Manage Blog Posts</h3>
-        <button mat-raised-button (click)="openDialog()">Create New Post</button>
-    </div>
+<div class="dashboard-layout">
+    <aside [class.collapsed]="collapsed" class="sidebar">
+        <button mat-icon-button (click)="toggleSidebar()">
+            <mat-icon>{{ collapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+        </button>
 
-    <div class="filters">
-        <mat-form-field appearance="outline">
-            <mat-label>Status</mat-label>
-            <mat-select [(ngModel)]="filters.status" (selectionChange)="loadBlogs()">
-            <mat-option value="">All Status</mat-option>
-            <mat-option value="PUBLISHED">Published</mat-option>
-            <mat-option value="DRAFT">Draft</mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Category</mat-label>
-            <mat-select [(ngModel)]="filters.category" (selectionChange)="loadBlogs()">
-                <mat-option value="">All Categories</mat-option>
-                <mat-option value="CRIMINAL_LAW">Criminal Law</mat-option>
-                <mat-option value="CORPORATE_LAW">Corporate Law</mat-option>
-                <mat-option value="FAMILY_LAW">FAMILY_LAW</mat-option>
-                <mat-option value="REAL_ESTATE_LAW">REAL_ESTATE_LAW</mat-option>
-                <mat-option value="EMPLOYMENT_LAW">EMPLOYMENT_LAW</mat-option>
-                <mat-option value="PERSONAL_INJURY">PERSONAL_INJURY</mat-option>
-                <mat-option value="INTELLECTUAL_PROPERTY">INTELLECTUAL_PROPERTY</mat-option>
-                <mat-option value="IMMIGRATION_LAW">IMMIGRATION_LAW</mat-option>
-                <mat-option value="TAX_LAW">TAX_LAW</mat-option>
-                <mat-option value="ESTATE_PLANNING">ESTATE_PLANNING</mat-option>
-                <mat-option value="CONSTITUTIONAL_LAW">CONSTITUTIONAL_LAW</mat-option>
-                <mat-option value="ENVIRONMENTAL_LAW">ENVIRONMENTAL_LAW</mat-option>
-                <mat-option value="BANKRUPTCY_LAW">BANKRUPTCY_LAW</mat-option>
-                <mat-option value="LEGAL_NEWS">LEGAL_NEWS</mat-option>
-                <mat-option value="OTHER">OTHER</mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="search-field" appearance="outline">
-            <mat-label>Search</mat-label>
-            <input
-            matInput
-            type="text"
-            placeholder="Search..."
-            [(ngModel)]="filters.search"
-            (input)="debouncedSearch()"
-            />
-            <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
-    </div>
-
-    <div class="blogs" *ngFor="let blog of blogs">
-        <div class="blog-card">
-            <div class="icon">
-                <img [src]="blog.featuredImage" alt="">
-            </div>
-
-            <div class="content">
-                <div class="text">
-                    <div>
-                        <div class="tit">
-                            <h4>
-                                {{ blog.title }}
-                            </h4>
-                            <span>
-                                <mat-icon>trending_up</mat-icon>
-                                views
-                                {{ blog.viewCount }}
-                            </span>
-                        </div>
-                        <p>{{ blog.summary }}</p>
-                    </div>
-                    <span class="status" [ngClass]="blog.status.toLowerCase()">{{ blog.status }}</span>
-                </div>
-
-                <div class="actions">
-                    <span>Created: {{ blog.createdAt | date: 'MMMM d, y' }}</span>
-
-                    <div class="cta">
-                        <button mat-button (click)="openEditDialog(blog)">
-                            <mat-icon>editOutlined</mat-icon>
-                            Edit
-                        </button>
-                        <button mat-button (click)="deleteBlog(blog.id)" [disabled]="loading">
-                            <mat-icon>delete</mat-icon>
-                            Delete
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="logo">
+            <img src="../../../assets/images/logo-white.png" alt="">
         </div>
-    </div>
 
-    <div class="pagination">
-        <button mat-stroked-button (click)="prevPage()" [disabled]="page === 0">
-            <mat-icon>chevron_left</mat-icon>
-            Prev
-        </button>
+        <nav>
+            <a
+                mat-list-item
+                routerLink="/admin"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" (click)="onNavClick()"
+            >
+                <mat-icon>menu</mat-icon>
+                <span>Manage Blogs</span>
+            </a>
+            <!-- <a mat-list-item routerLink="/admin/attendees" routerLinkActive="active" (click)="onNavClick()">
+                <mat-icon>people</mat-icon>
+                <span>Attendees</span>
+            </a> -->
+            <a mat-list-item routerLink="/admin/invite" routerLinkActive="active" (click)="onNavClick()">
+                <mat-icon>assignment</mat-icon>
+                <span>Invite Users</span>
+            </a>
+            <!-- <a mat-list-item routerLink="/admin/checker" routerLinkActive="active" (click)="onNavClick()">
+                <mat-icon>verified</mat-icon>
+                <span>Code Checker</span>
+            </a> -->
+        </nav>
+    </aside>
 
-        <span class="page-info">
-            Page {{ page + 1 }} / {{ totalPages }}
-        </span>
+    <div class="main">
+        <header class="topbar">
+            <span class="title">Admin Dashboard</span>
+            
+            <div class="right">
+                <mat-icon class="notify">notifications</mat-icon>
+                <mat-icon>account_circle</mat-icon>
+            </div>
+        </header>
 
-        <button mat-stroked-button (click)="nextPage()" [disabled]="page + 1 >= totalPages">
-            Next
-            <mat-icon>chevron_right</mat-icon>
-        </button>
+        <main class="content">
+            <router-outlet></router-outlet>
+        </main>
     </div>
 </div>

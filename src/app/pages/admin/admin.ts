@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Blogs } from '../../core/models/blog.model';
 import { BlogService } from '../../core/services/blog.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,129 +14,26 @@ import { Observable } from 'rxjs';
   styleUrl: './admin.scss',
 })
 export class Admin implements OnInit {
-  blogs: any[] = [];
-  loading: boolean = true;
-  page = 0;
-  size = 10;
-  totalPages = 0;
+  collapsed: boolean = false;
+  isMobile: boolean = false;
 
-  filters = {
-    status: '',
-    category: '',
-    search: ''
-  };
-
-  selectedStatus: string | null = null;
-  selectedCategory: string | null = null;
-  searchText: string = '';
-
-  constructor(
-    private blog: BlogService,
-    private dialog: MatDialog,
-    private snack: MatSnackBar
-  ) {};
-
-  ngOnInit(): void {
-    this.loadBlogs();
+  ngOnInit() {
+    this.checkScreenSize(); 
   }
 
-  loadBlogs() {
-    const { status, category, search } = this.filters;
-
-    let request$: Observable<any>;
-
-    if (search) {
-      request$ = this.blog.search(search, this.page, this.size);
-    } else if (status) {
-      request$ = this.blog.filterByStatus(status, this.page, this.size);
-    } else if (category) {
-      request$ = this.blog.filterByCategory(category, this.page, this.size);
-    } else {
-      request$ = this.blog.getAllBlogs(this.page, this.size);
-    }
-
-    request$.subscribe(res => {
-      this.blogs = res.content;
-      this.totalPages = res.totalPages;
-    });
+  @HostListener('window:resize')
+  checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+    this.collapsed = this.isMobile ? true : false; 
   }
 
-  deleteBlog(blogId: number) {
-    const dialogRef = this.dialog.open(ConfirmDialog, {
-      width: '380px',
-      panelClass: 'confirm-dialog'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.loading = true;
-
-        this.blog.deleteBlog(blogId).subscribe({
-          next: () => {
-            this.blogs = this.blogs.filter(blog => blog.id !== blogId);
-            this.loading = false;
-            this.snack.open('Blog deleted successfully ✅', 'Close', { duration: 3000 });
-          },
-          error: () => {
-            this.loading = false;
-            this.snack.open('Failed to delete blog ❌', 'Close', { duration: 3000 });
-          }
-        });
-      }
-    });
+  toggleSidebar() {
+    this.collapsed = !this.collapsed
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(CreateBlog, {
-      // width: '100%',
-      maxHeight:' 80vh',
-      panelClass: 'create-blog-dialog'
-    })
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.loadBlogs();
-      }
-    });
-  }
-
-  openEditDialog(blog: any) {
-    const dialogRef = this.dialog.open(CreateBlog, {
-      data: blog,
-      panelClass: 'create-blog-dialog'
-    })
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.loadBlogs();
-      }
-    });
-  }
-
-  debouncedSearch = this.debounce(() => {
-    this.page = 0;
-    this.loadBlogs();
-  }, 500);
-
-  debounce(func: Function, delay: number) {
-    let timer: any;
-    return (...args: any[]) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => func.apply(this, args), delay);
-    };
-  }
-
-  nextPage() {
-    if (this.page < this.totalPages - 1) {
-      this.page++;
-      this.loadBlogs();
-    }
-  }
-
-  prevPage() {
-    if (this.page > 0) {
-      this.page--;
-      this.loadBlogs();
+  onNavClick() {
+    if(this.isMobile) {
+      this.collapsed = true;
     }
   }
 }
