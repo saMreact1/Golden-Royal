@@ -20,6 +20,10 @@
         h3 {
             font-size: 2rem;
             font-weight: 700;
+
+            @media (max-width: 480px) {
+                font-size: 1.5rem;
+            }
         }
 
         button {
@@ -27,6 +31,10 @@
             font-weight: 600;
             color: #fff;
             font-size: 18px;
+
+            @media (max-width: 480px) {
+                font-size: 16px;
+            }
         }
     }
 

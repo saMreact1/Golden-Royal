@@ -5,7 +5,7 @@
                 <img src="../../../../assets/images/logo.png" alt="">
             </mat-card-title>
 
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="inviteForm" (ngSubmit)="onSubmit()">
                 <mat-form-field appearance="fill">
                     <mat-label>Email</mat-label>
                     <input type="email" formControlName="email" matInput required>
@@ -16,7 +16,7 @@
                     <input type="text" formControlName="password" matInput required>
                 </mat-form-field>
 
-                <button mat-button [disabled]="loginForm.invalid">LOGIN</button>
+                <button mat-button [disabled]="inviteForm.invalid">INVITE</button>
             </form>
         </mat-card>
     </div>

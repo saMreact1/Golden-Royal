@@ -9,21 +9,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './invite.scss',
 })
 export class Invite {
-  loginForm: FormGroup;
+  inviteForm: FormGroup;
   
     constructor(
       private fb: FormBuilder,
       private snack: MatSnackBar
     ) {
-      this.loginForm = this.fb.group({
+      this.inviteForm = this.fb.group({
         email: ['', Validators.required],
         password: ['', Validators.required]
       })
     }
   
     onSubmit() {
-      console.log('Login form submitted');
-      
-      this.snack.open('Login form submitted', 'Close', { duration: 3000 });
+      this.snack.open('Invitation form submitted', 'Close', { duration: 3000 });
     }
 }
