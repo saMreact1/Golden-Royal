@@ -24,6 +24,8 @@ import { Loader } from './shared/loader/loader';
 import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
 import { ConfirmDialog } from './shared/confirm-dialog/confirm-dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { Login } from './pages/auth/login/login';
+import { Layout } from './pages/layout/layout';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { MatSelectModule } from '@angular/material/select';
     Admin,
     CreateBlog,
     ConfirmDialog,
+    Login,
+    Layout,
     // Loader
   ],
   imports: [
@@ -50,7 +54,8 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
